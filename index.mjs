@@ -22,13 +22,28 @@ const API_KEY = 'live_GYNMD1nTB5jm1eIc9pxSyyMlDahwTrqbxCpjeIQAeM4Q4FeHFjX4u1xBY7
  * This function should execute immediately.
  */
 
-async function initalLoad(){
 
-  let response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10')
 
-  response = await response.json()
+async function initialLoad() {
+    try {
+      let response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10')
+      let data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
 
+  let total = breedSelect.total();
+for (let i = 1; i <= total; i++) {
+    let added = document.createElement('option');
+    let select1 = $('breed');
+    added.value = i;
+    added.innerHTML = i;
+    select1.append(added);
 }
+
+
 
 /**
  * 2. Create an event handler for breedSelect that does the following:
